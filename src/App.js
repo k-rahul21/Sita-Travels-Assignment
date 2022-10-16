@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AddPost from "./components/AddPost";
 import PostsList from "./components/PostsList";
@@ -55,7 +55,8 @@ function App() {
       .then((data) => {
         for (const key in data) {
           loadedPost.push({
-            id: key,
+            user_id: key,
+            id: data[key].id,
             title: data[key].title,
             body: data[key].body,
           });
