@@ -12,6 +12,7 @@ button {
   color: blueviolet;
   padding: 1rem;
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 section {
