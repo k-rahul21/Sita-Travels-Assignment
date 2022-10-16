@@ -13,12 +13,11 @@ button {
   padding: 1rem;
   cursor: pointer;
   margin-right: 1rem;
+  border-style: none;
+  text-decoration: underline;
 }
 
 section {
   width: 60vw;
-  border: 2px solid #000;
-  margin: 1rem 0;
   text-align: center;
-  padding: 1rem;
 }

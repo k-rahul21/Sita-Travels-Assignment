@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./App.css";
 import AddPost from "./components/AddPost";
 import PostsList from "./components/PostsList";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/Home";
+import { Link } from "react-router-dom";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -39,7 +42,6 @@ function App() {
         body: JSON.stringify(post),
       }
     );
-    alert("uploaded!!");
   };
 
   const refreshFeedHandler = () => {
@@ -72,22 +74,37 @@ function App() {
 
   return (
     <div className="App">
-      {isFormVisible && (
-        <section>
-          <AddPost onAddPost={addPostHandler} />
-        </section>
-      )}
-      <section>
-        <button onClick={fetchPostsHandler}>Fetch Posts</button>
-        <button onClick={() => setIsFormVisible(true)}>Add Post</button>
-        <button onClick={refreshFeedHandler}>Refresh</button>
-      </section>
-      <section>
-        {!isLoading && posts.length > 0 && <PostsList posts={updatedPosts} />}
-        {!isLoading && posts.length === 0 && !error && <p> Found no posts.</p>}
-        {!isLoading && error && <p>{error}</p>}
-        {isLoading && <p>Loading...</p>}
-      </section>
+      <nav>
+        <Link to="/">
+          <button onClick={fetchPostsHandler}>Home</button>
+        </Link>
+        <Link to="/upload-post">
+          <button onClick={() => setIsFormVisible(true)}>Add Post</button>
+        </Link>
+      </nav>
+      <Routes>
+        <Route
+          path="upload-post"
+          element={
+            <AddPost
+              onAddPost={addPostHandler}
+              isFormVisible={isFormVisible}
+              refreshHandler={refreshFeedHandler}
+            />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              isLoading={isLoading}
+              posts={updatedPosts}
+              error={error}
+              fetchHandler={fetchPostsHandler}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
