@@ -5,7 +5,7 @@ const PostsList = (props) => {
   return (
     <ul className="post-list">
       {props.posts.map((post) => (
-        <Post title={post.title} id={post.id} />
+        <Post key={post.id} title={post.title} id={post.id} />
       ))}
     </ul>
   );
