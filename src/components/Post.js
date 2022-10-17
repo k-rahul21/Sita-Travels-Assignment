@@ -1,9 +1,12 @@
 import "./PostsList.css";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
+  const { id, title } = props;
   return (
     <li className="post">
-      <h2>{props.title} </h2>
+      <h2>{title} </h2>
+      <Link to={`/posts/${id}`}>View Details</Link>
     </li>
   );
 };

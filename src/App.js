@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 import AddPost from "./components/AddPost";
-import PostsList from "./components/PostsList";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
 import { Link } from "react-router-dom";
+import PostDetail from "./pages/PostDetail";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -103,6 +103,10 @@ function App() {
               fetchHandler={fetchPostsHandler}
             />
           }
+        />
+        <Route
+          path="/posts/:postId"
+          element={<PostDetail updatedPost={updatedPosts} />}
         />
       </Routes>
     </div>
